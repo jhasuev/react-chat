@@ -1,10 +1,17 @@
-import Button from '@mui/material/Button'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Home from './views/Home';
+import Login from './views/Auth/Login';
+import Register from './views/Auth/Register';
 
 function App() {
   return (
-    <div>
-      <Button>Click me</Button>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/auth/login" element={<Login />} />
+        <Route path="/auth/register" element={<Register />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
