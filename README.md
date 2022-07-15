@@ -68,3 +68,29 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+# описание
+Очень простенький чат на реакте. Будет всего несколько страниц:
+- /auth/login
+- /auth/register
+- /chats
+- /chats/:chatId
+
+# краткое описание страниц
+## /auth/login
+- - форма для входа, поля: логин и пароль
+
+## /auth/register
+- - форма для регистрации, поля: логин, пароль, повтор пароля
+
+## /chats
+- - форма поиска по логину
+- - список чатов
+
+## /chats/:chatId
+- - имя выбранного пользователя
+- - сообщения с выбранным пользователем
+- - форма отправки нового сообщения, поля: поле сообщения и кнопка отправки
+- - доп кнопки:
+- - - кнопка выхода из этого чата (назад или стрелка <)
