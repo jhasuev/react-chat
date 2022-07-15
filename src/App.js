@@ -1,7 +1,9 @@
+import Button from '@mui/material/Button'
+
 function App() {
   return (
     <div>
-      hello, moon!
+      <Button>Click me</Button>
     </div>
   );
 }
