@@ -1,10 +1,15 @@
 import Button from '@mui/material/Button'
+import { Link } from "react-router-dom"
 
 function Register() {
   return (
     <div>
       Register page
-      <Button href="/auth/login">Go to Login page</Button>
+      <Link to="/auth/login">
+        <Button>
+          Go to Login page
+        </Button>
+      </Link>
     </div>
   );
 }
