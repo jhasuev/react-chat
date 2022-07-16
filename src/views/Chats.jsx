@@ -8,20 +8,20 @@ import ChatFooter from '../components/chat-footer';
 export default function Chats() {
   return (
     <div className="chat">
-      <header className="chat-header">
+      <header className="chat__header">
         <ChatHeader />
       </header>
 
-      <div className="chat-center">
-        <aside className="chat-sidebar">
+      <div className="chat__center">
+        <aside className="chat__sidebar">
           <UserList />
         </aside>
-        <main className="chat-main">
+        <main className="chat__main">
           <ChatMessages />
         </main>
       </div>
 
-      <footer className="chat-footer">
+      <footer className="chat__footer">
         <ChatFooter />
       </footer>
     </div>

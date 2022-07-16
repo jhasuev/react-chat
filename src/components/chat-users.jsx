@@ -1,8 +1,8 @@
+import '../styles/chat-users.css'
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import Avatar from '@mui/material/Avatar';
 import Badge from '@mui/material/Badge';
-import '../styles/chat-users.css'
 
 export default function UserList() {
   return (
@@ -15,7 +15,7 @@ export default function UserList() {
         <CardHeader
           avatar={
             <Badge badgeContent={27} color="success">
-              <Avatar>UN</Avatar>
+              <Avatar sx={{ width: 30, height: 30, fontSize: 15 }}>UN</Avatar>
             </Badge>
           }
           title="User Name"
@@ -29,7 +29,7 @@ export default function UserList() {
           <CardHeader
             avatar={
               <Badge badgeContent={i} color="success">
-                <Avatar>UN</Avatar>
+                <Avatar sx={{ width: 30, height: 30, fontSize: 15 }}>UN</Avatar>
               </Badge>
             }
             title="User Name"

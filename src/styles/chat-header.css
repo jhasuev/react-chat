@@ -1,0 +1,12 @@
+.chat-header {
+  display: flex;
+  align-items: center;
+}
+
+.chat-header__buttons {
+  margin-left: auto;
+}
+
+.chat-header__buttons-item {
+  margin-left: 15px !important;
+}
