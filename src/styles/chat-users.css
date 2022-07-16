@@ -1,0 +1,7 @@
+.chat-users {
+  padding: 15px 0;
+}
+
+.chat-users__item {
+  cursor: pointer;
+}

@@ -7,6 +7,7 @@ import {
 import Home from './views/Home';
 import Login from './views/Auth/Login';
 import Register from './views/Auth/Register';
+import Chats from './views/Chats';
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
           <Route path="/auth" element={ <Navigate to="/auth/login" /> } />
           <Route path="/auth/login" element={<Login />} />
           <Route path="/auth/register" element={<Register />} />
+          
+          <Route path="/chats" element={<Chats />} />
 
           <Route path="/*" element={ <Navigate to="/" /> } />
         </Routes>

@@ -29,6 +29,4 @@ body {
 
 .app {
   flex-grow: 1;
-  padding: 15px;
-  background-color: #eee;
 }
