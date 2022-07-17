@@ -1,0 +1,21 @@
+.messages {
+  min-height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+.messages__item {
+  align-self: flex-start;
+}
+
+.messages__item--me {
+  align-self: flex-end;
+  background-color: #eee !important;
+}
+
+.messages__item--time {
+  align-self: center;
+}

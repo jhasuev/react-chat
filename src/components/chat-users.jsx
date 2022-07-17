@@ -15,7 +15,7 @@ export default function UserList() {
         <CardHeader
           avatar={
             <Badge badgeContent={27} color="success">
-              <Avatar sx={{ width: 30, height: 30, fontSize: 15 }}>UN</Avatar>
+              <Avatar>UN</Avatar>
             </Badge>
           }
           title="User Name"
@@ -23,13 +23,14 @@ export default function UserList() {
       </Card>
       {Array(22).fill().map((_,i) => (
         <Card
+          key={i}
           elevation={0}
           className="chat-users__item"
         >
           <CardHeader
             avatar={
               <Badge badgeContent={i} color="success">
-                <Avatar sx={{ width: 30, height: 30, fontSize: 15 }}>UN</Avatar>
+                <Avatar>UN</Avatar>
               </Badge>
             }
             title="User Name"
