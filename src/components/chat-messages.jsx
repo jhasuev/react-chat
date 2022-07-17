@@ -1,12 +1,11 @@
 import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import '../styles/messages.css'
 
 
 export default function ChatMessages() {
   return (
-    <div className='messages'>
+    <div className='messages messages--no-messages'>
       <Card
         elevation={0}
         sx={{ mt: 2, color: '#aaa', fontSize: 14 }}
