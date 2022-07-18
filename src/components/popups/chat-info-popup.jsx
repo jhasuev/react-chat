@@ -11,7 +11,7 @@ import TextField from '@mui/material/TextField'
 
 import EventEmitter from '../../utils/EventEmitter'
 
-export default function SearchUserPopup() {
+export default function ChatInfoPopup() {
   const [open, setOpen] = React.useState(false)
 
   const onOpen = () => {
@@ -21,8 +21,9 @@ export default function SearchUserPopup() {
     setOpen(false)
   }
 
-  EventEmitter.$off('SHOW_SEARCH_USER_POPUP')
-  EventEmitter.$on('SHOW_SEARCH_USER_POPUP', () => {
+  EventEmitter.$off('SHOW_CHAT_INFO_POPUP')
+  EventEmitter.$on('SHOW_CHAT_INFO_POPUP', (chatId) => {
+    console.log('chatId', chatId)
     onOpen(true)
   })
 
@@ -42,7 +43,7 @@ export default function SearchUserPopup() {
           justifyContent: 'space-between',
         }}
       >
-        <div>Add new chat</div>
+        <div>Update chat info</div>
         <IconButton
           onClick={handleClose}
           sx={{ color: '#9e9e9e' }}
@@ -55,10 +56,9 @@ export default function SearchUserPopup() {
           <TextField
             sx={{ mb: 2 }}
             fullWidth
-            required
             name='login'
             autoComplete={'off'}
-            label="User login"
+            label="Chat info"
           />
         </Typography>
       </DialogContent>
@@ -67,7 +67,7 @@ export default function SearchUserPopup() {
           Cancel
         </Button>
         <Button variant="outlined" onClick={handleClose}>
-          Add
+          Save
         </Button>
       </DialogActions>
     </Dialog>

@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton'
 import Edit from '@mui/icons-material/Edit'
 import '../styles/messages.css'
+import EventEmitter from '../utils/EventEmitter';
 
 
 export default function ChatMessages() {
@@ -11,7 +12,10 @@ export default function ChatMessages() {
       <div className="messages__chat-info">
         <div>Будь в сети завтра в 12:27 по МСК</div>
         
-        <IconButton type="button" sx={{ p: '10px' }}>
+        <IconButton
+          type="button" sx={{ p: '10px' }}
+          onClick={() => EventEmitter.$emit('SHOW_CHAT_INFO_POPUP')}
+        >
           <Edit fontSize="small" />
         </IconButton>
       </div>
