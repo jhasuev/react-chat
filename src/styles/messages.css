@@ -1,23 +1,46 @@
-.messages {
-  min-height: 100%;
-
+.messages-wrapper {
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.messages--no-messages {
-  justify-content: center;
+.messages {
+  padding: var(--chat-content-paddings);
+
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
 }
 
-.messages__item {
+.messages__inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.messages__chat-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: var(--chat-content-paddings);
+  background-color: #eee;
+  font-size: 13px;
+}
+
+.messages__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.messages__list-item {
   align-self: flex-start;
 }
 
-.messages__item--me {
+.messages__list-item--me {
   align-self: flex-end;
   background-color: #eee !important;
 }
 
-.messages__item--time {
+.messages__list-item--time {
   align-self: center;
 }

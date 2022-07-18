@@ -12,7 +12,7 @@ import TextField from '@mui/material/TextField'
 import EventEmitter from '../../utils/EventEmitter'
 
 export default function CustomizedDialogs() {
-  const [open, setOpen] = React.useState(true)
+  const [open, setOpen] = React.useState(false)
 
   const onOpen = () => {
     setOpen(true)

@@ -2,8 +2,8 @@
   --chat-header-height: 50px;
   --chat-footer-height: 100px;
   --chat-sidebar-width: 270px;
-  --chat-content-padding-left: 15px;
-  --chat-sections-padding-left: calc(var(--chat-sidebar-width) + var(--chat-content-padding-left));
+  --chat-content-paddings: 15px;
+  --chat-sections-padding-left: calc(var(--chat-sidebar-width) + var(--chat-content-paddings));
 
   flex-grow: 1;
   display: flex;
@@ -53,10 +53,6 @@
   left: var(--chat-sidebar-width);
   right: 0;
   bottom: 0;
-
-  padding: var(--chat-content-padding-left);
-  
-  overflow-y: auto;
 }
 
 .chat__footer {
