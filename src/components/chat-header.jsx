@@ -24,7 +24,10 @@ export default function ChatHeader() {
           className="chat-header__buttons-item"
           onClick={() => EventEmitter.$emit('SHOW_SEARCH_USER_POPUP')}
         >Search user</Button>
-        <Link className="chat-header__buttons-item" to="/profile"><Button>Profile</Button></Link>
+        <Button
+          className="chat-header__buttons-item"
+          onClick={() => EventEmitter.$emit('SHOW_PROFILE_POPUP')}
+        >Profile</Button>
         <Button className="chat-header__buttons-item">Logout</Button>
       </div>
     </div>
