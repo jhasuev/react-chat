@@ -2,7 +2,6 @@ import Avatar from '@mui/material/Avatar'
 import Badge from '@mui/material/Badge'
 import Button from '@mui/material/Button'
 import CardHeader from '@mui/material/CardHeader'
-import { Link } from "react-router-dom"
 import '../styles/chat-header.css'
 import EventEmitter from '../utils/EventEmitter'
 
