@@ -17,8 +17,79 @@ const initialFields = {
 
 export default function Register() {
   const [fields, setFields] = React.useState({...initialFields})
+  const [errors, setErrors] = React.useState({...initialFields})
+  const rules = {
+    login: {
+      field: fields.login,
+      required: true,
+      trim: true,
+      min: 3,
+      max: 27,
+      fieldLabel: 'Login',
+    },
+    password: {
+      field: fields.password,
+      required: true,
+      trim: true,
+      min: 6,
+      max: 127,
+      fieldLabel: 'Password',
+    },
+    passwordConfirm: {
+      field: fields.passwordConfirm,
+      required: true,
+      trim: true,
+      sameAs: fields.password,
+      sameAsFieldLabel: 'Password',
+      fieldLabel: 'Password Confirm',
+    },
+  }
+
+  const isFieldValidate = (fieldName) => {
+    const fieldLabel = rules[fieldName]?.fieldLabel ?? fieldName
+    let val = rules[fieldName]?.field
+
+    if ('trim' in rules[fieldName]) {
+      val = val.trim()
+    }
+
+    if (rules[fieldName]?.required && !val) {
+      return `'${fieldLabel}' is required`
+    }
+
+    if ('min' in rules[fieldName] && val?.length < rules[fieldName]?.min) {
+      return `'${fieldLabel}' must be more or equal to '${rules[fieldName]?.min}' symbols`
+    }
+
+    if ('max' in rules[fieldName] && val?.length > rules[fieldName]?.max) {
+      return `'${fieldLabel}' must be less or equal to '${rules[fieldName]?.max}' symbols`
+    }
+
+    if ('sameAs' in rules[fieldName] && val !== rules[fieldName]?.sameAs) {
+      return `'${fieldLabel}' must be same as '${rules[fieldName]?.sameAsFieldLabel}'`
+    }
+
+    return ''
+  }
+
+  const checkFields = (fieldNames) => {
+    const checkingFields = Array.isArray(fieldNames) ? fieldNames : [fieldNames]
+    const fieldErrors = { ...errors }
+
+    checkingFields.forEach((fieldName) => {
+      fieldErrors[fieldName] = isFieldValidate(fieldName, fields[fieldName])
+    })
+
+    setErrors({ ...fieldErrors })
+
+    return Object.values(fieldErrors).every(v => !v)
+  }
 
   const onRegister = () => {
+    if (!checkFields(Object.keys(rules))) {
+      return EventEmitter.$emit('SHOW_MESSAGE', ['error', 'Fill all fields...'])
+    }
+
     EventEmitter.$emit('SHOW_MESSAGE', ['info', 'Отправка запроса на сервер...'])
     
     // EventEmitter.$emit('SHOW_MESSAGE', ['success', 'Text TextText Text'])
@@ -53,7 +124,11 @@ export default function Register() {
             required
             label="Login"
             value={fields.login}
+            onBlur={e => checkFields('login')}
             onInput={e => setFields({...fields, login: e.target.value})}
+
+            error={!!errors.login}
+            helperText={errors.login}
           />
           <TextField
             sx={{ mb: 2 }}
@@ -61,14 +136,22 @@ export default function Register() {
             required
             label="Password"
             value={fields.password}
+            onBlur={e => checkFields('password')}
             onInput={e => setFields({...fields, password: e.target.value})}
+            
+            error={!!errors.password}
+            helperText={errors.password}
           />
           <TextField
             fullWidth
             required
             label="Password Confirm"
             value={fields.passwordConfirm}
+            onBlur={e => checkFields('passwordConfirm')}
             onInput={e => setFields({...fields, passwordConfirm: e.target.value})}
+
+            error={!!errors.passwordConfirm}
+            helperText={errors.passwordConfirm}
           />
         </Typography>
 
