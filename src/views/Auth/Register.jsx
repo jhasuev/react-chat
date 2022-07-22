@@ -8,13 +8,14 @@ import TextField from '@mui/material/TextField';
 import { Link } from "react-router-dom"
 import LinkComp from '@mui/material/Link';
 import EventEmitter from '../../utils/EventEmitter';
+import Validation from '../../utils/Validation';
 
 const initialFields = {
   login: '',
   password: '',
   passwordConfirm: '',
 }
-
+let validate = null
 export default function Register() {
   const [fields, setFields] = React.useState({...initialFields})
   const [errors, setErrors] = React.useState({...initialFields})
@@ -45,44 +46,15 @@ export default function Register() {
     },
   }
 
-  const isFieldValidate = (fieldName) => {
-    const fieldLabel = rules[fieldName]?.fieldLabel ?? fieldName
-    let val = rules[fieldName]?.field
-
-    if ('trim' in rules[fieldName]) {
-      val = val.trim()
-    }
-
-    if (rules[fieldName]?.required && !val) {
-      return `'${fieldLabel}' is required`
-    }
-
-    if ('min' in rules[fieldName] && val?.length < rules[fieldName]?.min) {
-      return `'${fieldLabel}' must be more or equal to '${rules[fieldName]?.min}' symbols`
-    }
-
-    if ('max' in rules[fieldName] && val?.length > rules[fieldName]?.max) {
-      return `'${fieldLabel}' must be less or equal to '${rules[fieldName]?.max}' symbols`
-    }
-
-    if ('sameAs' in rules[fieldName] && val !== rules[fieldName]?.sameAs) {
-      return `'${fieldLabel}' must be same as '${rules[fieldName]?.sameAsFieldLabel}'`
-    }
-
-    return ''
-  }
+  React.useMemo(() => {
+    validate = new Validation()
+  }, [])
 
   const checkFields = (fieldNames) => {
-    const checkingFields = Array.isArray(fieldNames) ? fieldNames : [fieldNames]
-    const fieldErrors = { ...errors }
-
-    checkingFields.forEach((fieldName) => {
-      fieldErrors[fieldName] = isFieldValidate(fieldName, fields[fieldName])
-    })
-
-    setErrors({ ...fieldErrors })
-
-    return Object.values(fieldErrors).every(v => !v)
+    const result = validate.checkFields(fieldNames, { errors, rules })
+    
+    setErrors({ ...result.errors })
+    return result.valid
   }
 
   const onRegister = () => {
