@@ -1,0 +1,15 @@
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `login` VARCHAR(27) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `password` VARCHAR(32) NULL DEFAULT NULL,
+  `created` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE = MyISAM CHARSET = utf8 COLLATE utf8_general_ci;
+
+CREATE TABLE IF NOT EXISTS `auth_token` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `token` varchar(32) NOT NULL,
+  `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE = MyISAM CHARSET = utf8 COLLATE utf8_general_ci;

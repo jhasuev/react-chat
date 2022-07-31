@@ -1,0 +1,5 @@
+const MD5_SECRET_PHRASE = 'SOME_SECRET_STRING_cnods32d227'
+
+module.exports = {
+  MD5_SECRET_PHRASE,
+}

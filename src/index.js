@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux'
+import store from './store/'
 import App from './App';
 import './styles/main.css'
 import SearchUserPopup from './components/popups/search-user-popup'
@@ -9,11 +11,11 @@ import MySnackbar from './components/my-snackbar';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <SearchUserPopup />
     <ChatInfoPopup />
     <ProfilePopup />
     <MySnackbar />
     <App />
-  </React.StrictMode>
+  </Provider>
 );

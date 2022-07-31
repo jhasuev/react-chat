@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useDispatch } from 'react-redux';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -9,6 +10,8 @@ import { Link } from "react-router-dom"
 import LinkComp from '@mui/material/Link';
 import EventEmitter from '../../utils/EventEmitter';
 import Validation from '../../utils/Validation';
+import { register } from './../../store/auth'
+import { useNavigate } from "react-router-dom"
 
 const initialFields = {
   login: '',
@@ -17,6 +20,9 @@ const initialFields = {
 }
 let validate = null
 export default function Register() {
+  const dispatch = useDispatch()
+  const navigate = useNavigate();
+
   const [fields, setFields] = React.useState({...initialFields})
   const [errors, setErrors] = React.useState({...initialFields})
   const rules = {
@@ -57,28 +63,23 @@ export default function Register() {
     return result.valid
   }
 
-  const onRegister = () => {
+  const onRegister = async () => {
     if (!checkFields(Object.keys(rules))) {
       return EventEmitter.$emit('SHOW_MESSAGE', ['error', 'Fill all fields...'])
     }
-
-    EventEmitter.$emit('SHOW_MESSAGE', ['info', 'Отправка запроса на сервер...'])
     
-    // EventEmitter.$emit('SHOW_MESSAGE', ['success', 'Text TextText Text'])
-    // EventEmitter.$emit('SHOW_MESSAGE', ['error', 'Text TextText Text'])
-    // EventEmitter.$emit('SHOW_MESSAGE', ['warning', 'Text TextText Text'])
-    // EventEmitter.$emit('SHOW_MESSAGE', ['info', 'Text TextText Text'])
-    /* eslint-disable no-unused-vars */
     const login = fields.login.trim()
     const password = fields.password.trim()
-    const passwordConfirm = fields.passwordConfirm.trim()
 
     try {
-      // TODO поставить валидацию формы
-      // TODO отправить запрос на сервер
-      // TODO обработать ответ
+      const response = await dispatch(register({ login, password }))
+      if (response.payload.error) {
+        throw response.payload.error
+      } else {
+        navigate('/chats')
+      }
     } catch (error) {
-      EventEmitter.$emit('SHOW_MESSAGE', ['error', 'Что-то пошло не так...'])
+      EventEmitter.$emit('SHOW_MESSAGE', ['error', error.toString() || 'Something went wrong...'])
     }
   }
   
