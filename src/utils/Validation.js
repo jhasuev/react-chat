@@ -1,3 +1,26 @@
+export const RULES = {
+  login: {
+    required: true,
+    trim: true,
+    min: 3,
+    max: 27,
+    fieldLabel: 'Login',
+  },
+  password: {
+    required: true,
+    trim: true,
+    min: 6,
+    max: 127,
+    fieldLabel: 'Password',
+  },
+  passwordConfirm: {
+    required: true,
+    trim: true,
+    sameAsFieldLabel: 'Password',
+    fieldLabel: 'Password Confirm',
+  },
+}
+
 export default class Validation {
   isFieldValidate(fieldName, rules) {
     const rule = rules[fieldName]

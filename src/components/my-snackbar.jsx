@@ -7,7 +7,7 @@ function MyApp() {
 
   EventEmitter.$off('SHOW_MESSAGE')
   EventEmitter.$on('SHOW_MESSAGE', ([variant, message]) => {
-    enqueueSnackbar(message, { variant, autoHideDuration: 5000 })
+    enqueueSnackbar(message, { variant, autoHideDuration: 3000 })
   })
 
   return (

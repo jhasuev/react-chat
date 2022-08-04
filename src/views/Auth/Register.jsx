@@ -9,8 +9,8 @@ import TextField from '@mui/material/TextField';
 import { Link } from "react-router-dom"
 import LinkComp from '@mui/material/Link';
 import EventEmitter from '../../utils/EventEmitter';
-import Validation from '../../utils/Validation';
-import { register } from './../../store/auth'
+import Validation, { RULES } from '../../utils/Validation';
+import { REGISTER } from './../../store/auth'
 import { useNavigate } from "react-router-dom"
 
 const initialFields = {
@@ -27,28 +27,17 @@ export default function Register() {
   const [errors, setErrors] = React.useState({...initialFields})
   const rules = {
     login: {
+      ...RULES.login,
       field: fields.login,
-      required: true,
-      trim: true,
-      min: 3,
-      max: 27,
-      fieldLabel: 'Login',
     },
     password: {
+      ...RULES.password,
       field: fields.password,
-      required: true,
-      trim: true,
-      min: 6,
-      max: 127,
-      fieldLabel: 'Password',
     },
     passwordConfirm: {
+      ...RULES.passwordConfirm,
       field: fields.passwordConfirm,
-      required: true,
-      trim: true,
       sameAs: fields.password,
-      sameAsFieldLabel: 'Password',
-      fieldLabel: 'Password Confirm',
     },
   }
 
@@ -72,7 +61,7 @@ export default function Register() {
     const password = fields.password.trim()
 
     try {
-      const response = await dispatch(register({ login, password }))
+      const response = await dispatch(REGISTER({ login, password }))
       if (response.payload.error) {
         throw response.payload.error
       } else {
@@ -142,7 +131,7 @@ export default function Register() {
         <p sx={{ width: '100%' }}>
           Have an account? &nbsp;
           <Link to="/auth/login">
-            <LinkComp component="button">
+            <LinkComp component="span">
               Login!
             </LinkComp>
           </Link>

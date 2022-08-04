@@ -8,13 +8,13 @@ module.exports = async (req, res) => {
     const password = hashPassword(req.body.password)
 
     if (!login || !password) {
-      throw 'Не все данные введены'
+      throw 'Not all data were filled'
     }
 
     // проверка на существования пользователя с таким логином
     const [ alreadyHasSameLogin ] = await select(`SELECT * FROM users WHERE login = ?`, [ login ])
     if (alreadyHasSameLogin) {
-      throw 'Такой логин уже существует'
+      throw 'This login is busy'
     }
 
     const insertedId = await insert(`INSERT INTO users (?) VALUES (?)`, { login, password })
