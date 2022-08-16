@@ -13,3 +13,12 @@ CREATE TABLE IF NOT EXISTS `auth_token` (
   `modified_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE = MyISAM CHARSET = utf8 COLLATE utf8_general_ci;
+
+CREATE TABLE IF NOT EXISTS `chats` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `interlocutor_id` INT NOT NULL,
+  `chat_info` VARCHAR(255) NOT NULL,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE = MyISAM CHARSET = utf8 COLLATE utf8_general_ci;
